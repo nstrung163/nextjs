@@ -2,10 +2,22 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const router = useRouter();
+  const gotToDetailPost = () => {
+    router.push({
+      pathname: "/posts/[postId]",
+      query: {
+        postId: 1,
+        ref: "social",
+      },
+    });
+  };
   return (
     <>
       <Head>
@@ -58,7 +70,8 @@ export default function Home() {
             />
           </div>
         </div>
-
+        <Link href="/about">About page</Link>
+        <button onClick={gotToDetailPost}>Go to detail Post</button>
         <div className={styles.grid}>
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

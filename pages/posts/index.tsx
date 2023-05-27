@@ -1,4 +1,5 @@
 import { GetStaticPathsContext, GetStaticProps } from "next";
+import Link from "next/link";
 import React from "react";
 
 interface Post {
@@ -10,14 +11,16 @@ export interface PostsProps {
 }
 
 export default function Posts({ posts }: PostsProps) {
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <div>
       <h1>Post List</h1>
       <ul>
         {posts?.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            <Link href={`/posts/${post.id}`}>{post.title}</Link>
+          </li>
         ))}
       </ul>
     </div>
@@ -33,7 +36,7 @@ export const getStaticProps: GetStaticProps<PostsProps> = async (
   );
   const dataResponse = await response.json();
   const posts = dataResponse.data;
-  console.log(posts);
+  // console.log(posts);
   return {
     props: {
       posts: posts.map((post: Post) => ({ id: post.id, title: post.title })),

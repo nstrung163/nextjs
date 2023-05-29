@@ -28,7 +28,7 @@ export default function About() {
       {
         pathname: "/about",
         query: {
-          page: Number(page || 1) + 1,
+          page: (Number(page) || 1) + 1,
         },
       },
       undefined,

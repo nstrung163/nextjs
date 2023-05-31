@@ -1,4 +1,5 @@
 // import Header from "@/components/common/header";
+import MainLayout from "@/components/layout/main";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -52,6 +53,8 @@ export default function About() {
     </div>
   );
 }
+
+About.Layout = MainLayout;
 
 export async function getStaticProps() {
   console.log("----GET STATIC PROPS");

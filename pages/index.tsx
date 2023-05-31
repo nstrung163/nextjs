@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import MainLayout from "@/components/layout/main";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -134,3 +135,5 @@ export default function Home() {
     </>
   );
 }
+
+Home.Layout = MainLayout;

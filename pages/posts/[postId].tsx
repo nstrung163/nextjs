@@ -13,6 +13,11 @@ interface PostItemProps {
 
 export default function PostItem({ post }: PostItemProps) {
   const router = useRouter();
+  const isLoading = router.isFallback;
+  console.log("PostItem: isLoading", isLoading);
+  if (isLoading) {
+    return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+  }
   return (
     <div>
       <h1>Post Item</h1>
@@ -25,6 +30,7 @@ export default function PostItem({ post }: PostItemProps) {
 export const getStaticPaths: GetStaticPaths = async (
   context: GetStaticPathsContext
 ) => {
+  console.log("getStaticPaths");
   // Run this before running getStaticProps
   console.log("\n----- GET STATIC PATHS-----");
   const response = await fetch(
@@ -33,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async (
   const dataRes = await response.json();
   return {
     paths: dataRes.data.map((post: any) => ({ params: { postId: post.id } })),
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -53,5 +59,6 @@ export const getStaticProps: GetStaticProps<PostItemProps> = async (
     props: {
       post: post,
     },
+    revalidate: 5,
   };
 };

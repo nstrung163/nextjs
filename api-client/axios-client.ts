@@ -8,7 +8,7 @@ const axiosClient = axios.create({
   },
 });
 
-axios.interceptors.response.use(
+axiosClient.interceptors.response.use(
   function (response) {
     return response.data;
   },

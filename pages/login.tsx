@@ -3,7 +3,7 @@ import authApi from "@/api-client/auth-api";
 function Login() {
   async function handleLogin() {
     try {
-      authApi.login({
+      await authApi.login({
         username: "nst163",
         password: "123346",
       });
@@ -14,7 +14,7 @@ function Login() {
   }
   async function handleLogout() {
     try {
-      authApi.logout();
+      await authApi.logout();
       console.log("Logout successful");
     } catch (error) {
       console.log("Logout failed due to:", error);
@@ -22,7 +22,7 @@ function Login() {
   }
   async function handleProfile() {
     try {
-      authApi.getProfile();
+      await authApi.getProfile();
       console.log("Get profile successful");
     } catch (error) {
       console.log("Get profile failed due to", error);

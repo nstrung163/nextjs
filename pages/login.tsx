@@ -1,39 +1,32 @@
-import authApi from "@/api-client/auth-api";
+import { useAuth } from "@/hooks";
 
 function Login() {
+  const { profile, login, logout, error } = useAuth({
+    revalidateOnMount: false,
+  });
+
   async function handleLogin() {
     try {
-      await authApi.login({
-        username: "nst163",
-        password: "123346",
-      });
-      console.log("Login successful");
+      await login();
+      console.log("Login successful redirect to dashboard");
     } catch (error) {
       console.log("login failed due to error", error);
     }
   }
   async function handleLogout() {
     try {
-      await authApi.logout();
-      console.log("Logout successful");
+      await logout();
+      console.log("Logout successful redirect to login page");
     } catch (error) {
       console.log("Logout failed due to:", error);
-    }
-  }
-  async function handleProfile() {
-    try {
-      await authApi.getProfile();
-      console.log("Get profile successful");
-    } catch (error) {
-      console.log("Get profile failed due to", error);
     }
   }
 
   return (
     <div>
       <h1>Login Page</h1>
+      <p>Profile: {JSON.stringify(profile || {}, null, 4)}</p>
       <button onClick={handleLogin}>Login</button>
-      <button onClick={handleProfile}>Get Profile</button>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

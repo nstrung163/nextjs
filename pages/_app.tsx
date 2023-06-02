@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <SWRConfig
       value={{
         fetcher: (url) => axiosClient.get(url),
+        shouldRetryOnError: false,
       }}
     >
       <Layout>

@@ -5,6 +5,9 @@ import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const Header = dynamic(() => import("@/components/common/header"), {
   ssr: false,
@@ -41,17 +44,20 @@ export default function About() {
   };
 
   return (
-    <div>
-      {/* <Header /> */}
-      <h1>About</h1>
-      <p>Query: {JSON.stringify(router.query)}</p>
-      <ul>
-        {postList.map((post: any) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-      <button onClick={handleNextPage}>Next page</button>
-    </div>
+    <Container maxWidth="sm">
+      <Box>
+        <Typography variant="h4" component="h1" gutterBottom>
+          About
+        </Typography>
+        <p>Query: {JSON.stringify(router.query)}</p>
+        <ul>
+          {postList.map((post: any) => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+        <button onClick={handleNextPage}>Next page</button>
+      </Box>
+    </Container>
   );
 }
 

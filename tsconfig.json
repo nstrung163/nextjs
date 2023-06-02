@@ -19,7 +19,8 @@
       "@/*": ["./*"],
       "@/components/*": ["./components/*"],
       "@/models/*": ["./models/*"],
-      "@/api-client/*": ["./api-client/*"]
+      "@/api-client/*": ["./api-client/*"],
+      "@/utils/*": ["./utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

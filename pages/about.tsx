@@ -1,4 +1,5 @@
 // import Header from "@/components/common/header";
+import AdminLayout from "@/components/layout/admin";
 import MainLayout from "@/components/layout/main";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
@@ -54,7 +55,7 @@ export default function About() {
   );
 }
 
-About.Layout = MainLayout;
+About.Layout = AdminLayout;
 
 export async function getStaticProps() {
   console.log("----GET STATIC PROPS");

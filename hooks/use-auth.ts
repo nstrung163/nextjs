@@ -11,6 +11,9 @@ export function useAuth(options?: Partial<any>) {
     ...options,
   });
 
+  const isFirstLoading = profile === undefined && error === undefined;
+  console.log({ profile, error, isFirstLoading });
+
   async function login() {
     await authApi.login({
       username: "nst163",
@@ -21,7 +24,7 @@ export function useAuth(options?: Partial<any>) {
 
   async function logout() {
     await authApi.logout();
-    await mutate({}, false);
+    mutate(null, false);
   }
 
   return {
@@ -29,5 +32,6 @@ export function useAuth(options?: Partial<any>) {
     error,
     login,
     logout,
+    isFirstLoading,
   };
 }

@@ -1,6 +1,8 @@
 import { useAuth } from "@/hooks";
+import { useRouter } from "next/router";
 
 function Login() {
+  const router = useRouter();
   const { profile, login, logout, error } = useAuth({
     revalidateOnMount: false,
   });
@@ -9,6 +11,7 @@ function Login() {
     try {
       await login();
       console.log("Login successful redirect to dashboard");
+      router.push("/about");
     } catch (error) {
       console.log("login failed due to error", error);
     }
@@ -28,6 +31,7 @@ function Login() {
       <p>Profile: {JSON.stringify(profile || {}, null, 4)}</p>
       <button onClick={handleLogin}>Login</button>
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={() => router.push("/about")}>Go to about page</button>
     </div>
   );
 }

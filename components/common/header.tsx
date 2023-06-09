@@ -1,6 +1,10 @@
+import { Box } from "@mui/material";
 import React from "react";
 
-export default function Header() {
-  console.log("Render header");
-  return <div>Header</div>;
+export function Header() {
+  return (
+    <Box component="header" py={2} textAlign="center">
+      Header
+    </Box>
+  );
 }
